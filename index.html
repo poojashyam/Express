@@ -1,0 +1,42 @@
+<html>
+    <head>
+    <script type="application/javascript" src="/jquery-1.8.2.js"></script>
+    <script type="application/javascript" src="/handlebars-1.0.0.beta.6.js"></script>
+    <script type="application/javascript" src="/Class.js"></script>
+    <script type="application/javascript" src="/Base.js"></script>
+    <script type="application/javascript" src="/Widget.js"></script>
+    <script type="application/javascript" src="/TemplateProvider.js"></script>
+    <script type="application/javascript" src="/WidgetWithTemplate.js"></script>
+    <script type="application/javascript" src="/page1MainWidget.js"></script>
+    <script type="application/javascript" src="/headerWidget.js"></script>
+    <script type="application/javascript" src="/page1ContentWidget.js"></script>
+    <script type="application/javascript" src="/page2ContentWidget.js"></script>
+    <script type="application/javascript" src="/Router.js"></script>
+
+    </head>
+    <body>
+    <script>
+        document.config = {
+            map:{
+                "page1":"Clazz.page1ContentWidget",
+                "page2":"Clazz.page2ContentWidget"
+            },
+            "container": "page1Content"
+        }
+    </script>
+        
+        <div id="page1MainContainer"></div>
+        
+        <script type="application/javascript">
+            $(document).ready(function(){//called when browser loads all the resource you need a $ to load the script inside the browser         
+                //caling the router and passing th map.
+                var Router = new Clazz.Router(document.config);
+                    document.Navigate = Router.Navigate;
+                //default rendering.
+                var page1MainWidget = new Clazz.page1MainWidget(document.config);
+                var page1MainContainer = document.getElementById("page1MainContainer");
+                    page1MainWidget.render(page1MainContainer);  
+            });
+        </script>
+    </body>
+</html>
